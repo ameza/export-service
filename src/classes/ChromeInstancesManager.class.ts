@@ -211,7 +211,8 @@ export class ChromeInstancesManager {
       this.logger.info(msg);
       // if process not killed regular way - it may be a symptom, that it unavailable, so attempt to kill it via linux
       // command and run a new instance directly on port
-      if (!isKilled) {
+      // @ts-ignore
+
         const cmd = `kill ${instance.pid}`;
         this.logger.info(`Running a ${cmd}`);
         exec(cmd, (error) => {
@@ -224,7 +225,7 @@ export class ChromeInstancesManager {
           }
         });
 
-      }
+
     }
   }
 
