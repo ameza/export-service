@@ -56,9 +56,9 @@ app.get('/activity-check', activityCheck);
 app.get('/logfile', logfile);
 app.get('/', info);
 app.post('/save-as-pdf', getAsPdf);
-app.post('/', makeResource);
-app.post('/dom2page', domToFile);
-app.post('/dom-to-file', domToFile);
+//app.post('/', makeResource);
+//app.post('/dom2page', domToFile);
+//app.post('/dom-to-file', domToFile);
 /* ENDPOINTS END*/
 
 /* MAIN FUNCTIONS START */
@@ -106,7 +106,7 @@ function info (req: Request, res: Response) {
         description: 'Will gather info about activities at 30 sec and send result to browser',
         method: 'get'
       },
-      'POST /': {
+ /*     'POST /': {
         description: 'Will create PDF or image, which will contain screenshots of pages, specified via urls(in case of image - only first of them)',
         method: 'post',
         request: {
@@ -119,7 +119,7 @@ function info (req: Request, res: Response) {
         response: {
           body: 'Buffer'
         }
-      },
+      },*/
       'POST /save-as-pdf': {
         description: 'Will create PDF, which will contain print(Ctrl+p -> save as PDF in browser) version os specified page',
         method: 'post',
@@ -137,7 +137,7 @@ function info (req: Request, res: Response) {
           body: 'Buffer'
         }
       },
-      'POST /dom2page': {
+/*      'POST /dom2page': {
         warning: ' endpoint deprecated. Use dom-to-file endpoint instead.',
         description: 'Will create PDF or image, for specified html',
         method: 'post',
@@ -161,7 +161,7 @@ function info (req: Request, res: Response) {
         response: {
           body: 'Buffer'
         }
-      }
+      }*/
     }
   };
 
@@ -179,6 +179,12 @@ async function getAsPdf (req: Request, res: Response) {
     res.status(422).send('Url required');
     return;
   }
+
+  if (url.indexOf('careerbuilder.com') == -1) {
+    res.status(422).send('Url must belong to careerbuilder.com domain');
+    return;
+  }
+
   if (!options || typeof options !== 'object') {
     options = {};
   }

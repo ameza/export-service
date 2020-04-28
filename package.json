@@ -1,13 +1,13 @@
 {
   "name": "export-service",
-  "version": "1.5.0",
+  "version": "16.0",
   "description": "export service for PDF and PNG leveraging chrome headless",
   "main": "dist/index.js",
   "scripts": {
     "start": "node dist/index.js",
     "postinstall": "typings install"
   },
-  "author": "Zackary Chapple",
+  "author": "Zackary Chapple / Andres Meza",
   "license": "MIT",
   "dependencies": {
     "@types/lodash": "^4.14.150",
